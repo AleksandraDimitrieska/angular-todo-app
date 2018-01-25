@@ -1,0 +1,25 @@
+<button class="btn btn-primary btn-lg" (click)="onGetTasks()">Get tasks</button>
+
+
+<!-- <hr> -->
+<!-- <app-task *ngFor="let task of tasks" [task]="task"></app-task>  -->
+
+
+<div class="container">
+    <div class="row">
+      <h1>All Tasks: </h1>
+      <br>
+      <div class="row">
+       
+        <div class="panel panel-success" *ngFor="let task of tasks">
+            <div class="panel panel-heading" >
+              <a routerLink="/task/{{task.id}}">{{task.title}}</a>
+            </div>
+            <div class="panel panel-body">
+              {{task.body}}
+            </div>
+        </div>
+         <a href="/new-task" class="btn btn-info btn-lg" role="button">Create</a>
+      </div>
+    </div>
+  </div>

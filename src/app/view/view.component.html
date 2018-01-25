@@ -1,0 +1,184 @@
+
+<button (click)="quartal()">Quartal View</button>
+<button (click)="time()">Time View</button>
+<br>
+<br>
+<br>
+<div *ngIf="quartalView">
+	<table class="table table-bordered">
+					    <tbody>
+					      <tr>
+					        <td></td>
+					        <td>URGENT</td>
+					        <td>NOT URGENT</td>
+					      </tr>
+					      <tr>
+					        <td>IMPORTANT</td>
+					        <td >
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">
+							
+				        			<li >
+		        						<div *ngIf="task.urgency=='Urgent' && task.importancy=='Important'">
+						        			<a style="color:black">[<i class="glyphicon glyphicon-remove" (click)="onDelete(task)"></i>]</a>
+						        				<a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+					        	</ul>
+					        	 <p style="text-decoration:underline" align="right"><a style="color:grey"  href="/new-task?urgency=Urgent&importancy=Important">Add task</a></p>
+					        </td>
+					        <td>
+
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">
+						        			
+				        			<li >
+		        						<div *ngIf="task.importancy=='Important' && task.urgency=='Not Urgent'">
+		        							<a style="color:black">[<i class="glyphicon glyphicon-remove" (click)="onDelete(task)"></i>]</a>
+						        			<a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+					        	</ul>
+
+											<p style="text-decoration:underline" align="right"><a style="color:grey" href="/new-task?urgency=Not Urgent&importancy=Important">Add task</a></p>
+					        </td> 
+					      </tr>
+
+					      <tr>
+					        <td>NOT IMPORTANT</td>
+					        <td>
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">		
+				        			<li >
+		        						<div *ngIf="task.urgency=='Urgent' && task.importancy=='Not Important'">
+		        							<a style="color:black">[<i class="glyphicon glyphicon-remove" (click)="onDelete(task)"></i>]</a>
+						        			<a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+					        	</ul>
+					        		<p style="text-decoration:underline" align="right"><a style="color:grey" href="/new-task?urgency=Urgent&importancy=Not Important">Add task</a></p>
+					        </td>
+					        <td>
+
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">
+						        			
+				        			<li >
+		        						<div *ngIf="task.importancy=='Not Important' && task.urgency=='Not Urgent'">
+		        							<a style="color:black">[<i class="glyphicon glyphicon-remove" (click)="onDelete(task)"></i>]</a>
+						        			<a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+
+					        	</ul>
+
+					        		<p style="text-decoration:underline" align="right"><a style="color:grey" href="/new-task?urgency=Not Urgent&importancy=Not Important">Add task</a></p>
+					        </td> 
+					      </tr>
+
+	
+					    </tbody>
+					</table>
+
+
+</div>
+<div *ngIf="timeView">
+<br>
+<br>
+<div class="row">
+	<div class="col-md-5 col-md-offset-1">
+		<table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>Daily</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td height="240">
+		          <ul style="list-style-type:none" *ngFor="let task of tasks">
+	                  <li >
+	                    <div *ngIf="task.category=='Daily'" >
+												<span> <td> <a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a></td><span class="pull-right"><input type="checkbox" [checked]="task.isFinished" (click)="isComplete(task.id,task.isFinished)" > </span></span>
+										 </div> 
+	                  </li>
+                </ul>
+		        </td>
+
+		      </tr>
+		      <p style="text-decoration:underline; margin-right: 1cm;" align="right"><a style="color:grey"  href="/new-task?category=Daily">Add task</a></p>
+		    </tbody>
+		</table>
+
+	</div>
+	<div class="col-md-5 col-md-offset-1">
+		<table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>Monthly</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td height="240">
+		          <ul style="list-style-type:none" *ngFor="let task of tasks">
+	                  <li >
+	                    <div *ngIf="task.category=='Monthly'">
+												<span> <a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a><span><input type="checkbox" [checked]="task.isFinished" (click)="isComplete(task.id,task.isFinished)" class="pull-right"></span></span>
+										 </div> 
+	                  </li>
+                </ul>
+		        </td>
+		      </tr>
+			<p style="text-decoration:underline; margin-right: 1cm;" align="right"><a style="color:grey"  href="/new-task?category=Monthly">Add task</a></p>
+	    </tbody>
+		</table>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+	<div class="col-md-5 col-md-offset-1">
+		<table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>Weekly</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td height="240">
+		          <ul style="list-style-type:none" *ngFor="let task of tasks">
+	                  <li >
+	                    <div *ngIf="task.category=='Weekly'">
+												<span><a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a><span><input type="checkbox" [checked]="task.isFinished" (click)="isComplete(task.id,task.isFinished)" class="pull-right"></span></span>
+										</div> 
+	                  </li>
+                </ul>
+		        </td>
+		      </tr>
+			<p style="text-decoration:underline; margin-right: 1cm;" align="right"><a style="color:grey"  href="/new-task?category=Weekly">Add task</a></p>
+	    </tbody>
+		</table>
+	</div>
+	<div class="col-md-5 col-md-offset-1">
+		<table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>Uncategorized</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td height="240">
+		          <ul style="list-style-type:none" *ngFor="let task of tasks">
+	                  <li >
+	                    <div *ngIf="task.category=='Uncategorized'">
+												<span><a style="color:black" routerLink="/task/{{task.id}}">{{task.title}}</a><span><input type="checkbox" [checked]="task.isFinished" (click)="isComplete(task.id,task.isFinished)" class="pull-right"></span></span>
+										</div> 
+	                  </li>
+                </ul>
+		        </td>
+		      </tr>
+			<p style="text-decoration:underline; margin-right: 1cm;" align="right"><a style="color:grey"  href="/new-task?category=Uncategorized">Add task</a></p>
+	    </tbody>
+		</table>
+</div>
+</div>

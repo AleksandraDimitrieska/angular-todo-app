@@ -1,0 +1,59 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Create new Task:</h1>
+      <br>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" ngModel class="form-control">
+          </div>
+
+          <div class="form-group">
+              <label for="body">Body</label>
+              <input type="text" id="body" name="body" ngModel class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Select category: </label>
+            <select name="category" id="category" ngModel class="form-control"  [(ngModel)]="category">
+              <option value="Daily" selected>Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Uncategorized">Uncategorized</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="importancy">Select importancy: </label>
+            <select name="importancy" ngModel class="form-control" id="importancy" [(ngModel)]="importancy">
+                <option value="Important" selected="selected">Important</option>
+                <option value="Not Important">Not Important</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="urgency">Select urgency: </label>
+            <select name="urgency" ngModel class="form-control" id="urgency" [(ngModel)]="urgency">
+                <option value="Urgent" selected="selected">Urgent</option>
+                <option value="Not Urgent">Not Urgent</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="isFinished">Finished</label>
+            <input type="text" id="isFinished" name="isFinished" ngModel class="form-control">
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+

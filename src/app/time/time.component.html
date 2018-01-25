@@ -1,0 +1,59 @@
+<button class="btn btn-primary" (click)="onGetTime()">Get Time</button>
+
+
+<table class="table table-striped">
+					    <tbody>
+					      <tr>
+					        <td></td>
+					        <td>URGENT</td>
+					        <td>NOT URGENT</td>
+					      </tr>
+					      <tr>
+					        <td>IMPORTANT</td>
+					        <td>
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">		
+				        			<li >
+		        						<div *ngIf="task.urgency=='Urgent' && task.importancy=='Important'">
+						        			<a style="color:black" href="#">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+					        	</ul>
+					        	 <p style="text-decoration:underline" align="right"><a style="color:grey" href="/new-task">Add task</a></p>
+					        </td>
+					        <td>
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">	
+				        			<li >
+		        						<div *ngIf="task.importancy=='Important' && task.urgency=='Not Urgent'">
+						        			<a style="color:black" href="#">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+					        	</ul>
+					        		<p style="text-decoration:underline" align="right"><a style="color:grey" href="/new-task">Add task</a></p>
+					        </td> 
+					      </tr>
+					      <tr>
+					        <td>NOT IMPORTANT</td>
+					        <td>
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">
+						        			
+				        			<li >
+		        						<div *ngIf="task.urgency=='Urgent' && task.importancy=='Not Important'">
+						        			<a style="color:black" href="#">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+					        	</ul>
+					        		<p style="text-decoration:underline" align="right"><a style="color:grey" href="/new-task">Add task</a></p>
+					        </td>
+					        <td>
+					        	<ul style="list-style-type:none" *ngFor="let task of tasks">			
+				        			<li >
+		        						<div *ngIf="task.importancy=='Not Important' && task.urgency=='Not Urgent'">
+						        			<a style="color:black" href="#">{{task.title}}</a>
+				        				</div> 
+				        			</li>
+					        	</ul>
+					        		<p style="text-decoration:underline" align="right"><a style="color:grey" href="/new-task">Add task</a></p>
+					        </td> 
+					      </tr>
+					    </tbody>
+					</table>
